@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- Creator: Justin Yau  -->
+<html>
+
+	<head>
+		<title> </title>
+		
+		<style> 
+			
+			body
+			{
+				text-align: center;
+			}
+			
+			img#bckgrnd
+			{
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				z-index: -1;
+				width: 100%;
+				height: 100%;
+			}
+			
+			img#logo
+			{
+				height: 50%;
+				width: 50%;
+			}
+			
+			input#submitbtn
+			{
+				border-radius: 5px;
+			}
+			
+			.information
+			{
+				font: bold 16pt calibri;
+			}
+			
+			input.login
+			{
+				border-radius: 5px;
+				border-color: rgb(0, 179, 179);
+				background-color: rgb(0, 179, 179);
+			}
+			
+		</style>
+
+		<script>
+		
+			function initialize() 
+			{
+				getElements();
+			}
+			
+			function getElements()
+			{
+				jLevel = document.getElementById("theLevel");
+				sButton = document.getElementById("submitbtn");
+			}
+			
+			function isLegit()
+			{
+				var tLevel = jLevel.value;
+				if(tLevel < 0)
+				{
+					jLevel.value = 0;
+				}
+				else
+				{
+					if(tLevel > 100)
+					{
+						jLevel.value = 100;
+					}
+				}
+			}
+			
+			function changeBTN(cbox)
+			{
+				if(cbox.checked)
+				{
+					sButton.value = "Register";
+				}
+				else
+				{
+					sButton.value = "Login";
+				}
+			}
+			
+		</script>
+	</head>
+	
+	<body onload = "initialize();">
+		<img id = "bckgrnd" src = "images/background.jpg" />
+		
+		<img id = "logo" src = "images/logo.jpg" /> 
+		
+		<div class = "information">
+			Welcome to ARK's Dino Database! Please login or register to view/add information about your dinos! <br /> <br />
+		</div>
+		
+		<form method = "post" action = "php/processLogin.php">
+			<span class = "information"> Survivor Name: </span> <input type = "text" name = "sname" class = "login" style = "font: bold 11pt calibri;" required/> <span style = "color: red"> * </span> <br />
+			<span class = "information"> Survivor Level: </span> <input id = "theLevel" type = "number" name = "slevel" class = "login" style = "font: bold 11pt calibri;" required onchange = "isLegit();"/> <span style = "color: red"> * </span> <br /> 
+			<input type = "checkbox" name = "newuser" onchange = "changeBTN(this);"/> <span style = "font: bold 11pt calibri;"> New user </span> <br /> <br />
+			<input type = "submit" id = "submitbtn" value = "Login"/>
+		</form>
+		
+	</body>
+	
+</html>
+
